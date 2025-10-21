@@ -2,7 +2,7 @@
 import requests
 import pandas as pd
 
-API_KEY = ""
+API_KEY = "NO API_KEY"
 
 
 
