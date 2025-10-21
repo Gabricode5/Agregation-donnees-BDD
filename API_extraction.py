@@ -2,7 +2,9 @@
 import requests
 import pandas as pd
 
-API_KEY = "16d9be4164db2a69a3d85f0d21a9ce9a"
+API_KEY = ""
+
+
 
 # Liste des grandes villes françaises
 villes_francaises = [
