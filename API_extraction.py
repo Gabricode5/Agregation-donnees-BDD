@@ -2,8 +2,7 @@
 import requests
 import pandas as pd
 
-# Clé API OpenWeatherMap (à remplacer par votre clé gratuite)
-API_KEY = "VOTRE_CLE_API_ICI"
+API_KEY = "16d9be4164db2a69a3d85f0d21a9ce9a"
 
 # Liste des grandes villes françaises
 villes_francaises = [
@@ -26,38 +25,25 @@ for ville in villes_francaises:
         if geo_data:
             latitude = geo_data[0].get('lat', 'N/A')
             longitude = geo_data[0].get('lon', 'N/A')
-            
-            # Appel API OpenWeatherMap pour récupérer les données météo
-            temperature = 'N/A'
-            humidite = 'N/A'
-            pression = 'N/A'
-            vitesse_vent = 'N/A'
-            conditions_meteo = 'N/A'
+
             
             if latitude != 'N/A' and longitude != 'N/A':
-                weather_url = f"http://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={API_KEY}&units=metric"
-                weather_response = requests.get(weather_url)
-                if weather_response.status_code == 200:
+                weather_url = f"http://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={API_KEY}&units=metric" #
+                weather_response = requests.get(weather_url) #Appel API météo
+                if weather_response.status_code == 200: #vérification du succès de l'appel API météo
                     weather_data = weather_response.json()
                     temperature = weather_data['main'].get('temp', 'N/A')
                     humidite = weather_data['main'].get('humidity', 'N/A')
                     pression = weather_data['main'].get('pressure', 'N/A')
                     vitesse_vent = weather_data['wind'].get('speed', 'N/A')
-                    conditions_meteo = weather_data['weather'][0].get('description', 'N/A')
+                    conditions_meteo = weather_data['weather'][0].get('description', 'N/A') #ajout de la récupération des variables
+                else:
+                    (weather_response.status_code) #message d'erreur en cas d'échec de l'appel API météo
             
-            # Appel API OpenWeatherMap pour récupérer la qualité de l'air
-            aqi = 'N/A'
-            pm2_5 = 'N/A'
-            pm10 = 'N/A'
-            no2 = 'N/A'
-            o3 = 'N/A'
-            co = 'N/A'
-            so2 = 'N/A'
-            
-            if latitude != 'N/A' and longitude != 'N/A':
-                air_url = f"http://api.openweathermap.org/data/2.5/air_pollution?lat={latitude}&lon={longitude}&appid={API_KEY}"
-                air_response = requests.get(air_url)
-                if air_response.status_code == 200:
+            if latitude != 'N/A' and longitude != 'N/A': #Vérification de la validité des coordonnées
+                air_url = f"http://api.openweathermap.org/data/2.5/air_pollution?lat={latitude}&lon={longitude}&appid={API_KEY}" #URL API pour la qualité de l'air
+                air_response = requests.get(air_url) #Appel API pour la qualité de l'air
+                if air_response.status_code == 200: #Vérification du succès de l'appel API
                     air_data = air_response.json()
                     aqi = air_data['list'][0]['main'].get('aqi', 'N/A')
                     components = air_data['list'][0]['components']
@@ -66,9 +52,9 @@ for ville in villes_francaises:
                     no2 = components.get('no2', 'N/A')
                     o3 = components.get('o3', 'N/A')
                     co = components.get('co', 'N/A')
-                    so2 = components.get('so2', 'N/A')
+                    so2 = components.get('so2', 'N/A') #ajout de la récupération des variables
             
-            count += 1
+            count += 1 #incrémentation de l'ID
             air_quality_data.append({  
                 'id': count,
                 'ville': ville,
@@ -86,10 +72,10 @@ for ville in villes_francaises:
                 'O3_μg_m3': o3,
                 'CO_μg_m3': co,
                 'SO2_μg_m3': so2,
-            })
+            }) #insertion des données dans la liste
     else:
-        print(f"Erreur lors de l'appel API (code {geo_response.status_code})")
+        print(f"Erreur lors de l'appel API (code {geo_response.status_code})") #message d'erreur en cas d'échec de l'appel API
 
-df = pd.DataFrame(air_quality_data)
-df.to_csv("air_quality_data.csv", index=False, encoding='utf-8-sig')
-print("Export terminé : fichier 'air_quality_data.csv' créé")
+df = pd.DataFrame(air_quality_data) #création du DataFrame pandas
+df.to_csv("air_quality_data.csv", index=False, encoding='utf-8-sig') #création du fichier csv
+print("Export terminé : fichier 'air_quality_data.csv' créé") #message de confirmation
