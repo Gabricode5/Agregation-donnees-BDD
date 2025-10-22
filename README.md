@@ -13,7 +13,7 @@ Mettre en place une chaîne complète de **collecte**, **nettoyage / harmonisati
 ---
 
 ## 💡 Problématique Professionnelle (fictive)
-> Comment la qualité de l’air varie-t-elle selon les conditions météorologiques, la densité urbaine et le trafic dans les grandes villes françaises ?
+> Comment la qualité de l'air varie-t-elle selon les conditions météorologiques, la densité urbaine et la géolocalisation de la ville ?
 
 ---
 
@@ -21,7 +21,6 @@ Mettre en place une chaîne complète de **collecte**, **nettoyage / harmonisati
 - 🌫️ Qualité de l’air  
 - 🌦️ Conditions météorologiques  
 - 🏙️ Densité urbaine  
-- 🚗 Trafic  
 
 ---
 
