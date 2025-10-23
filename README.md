@@ -43,7 +43,8 @@ Mettre en place une chaîne complète de **collecte**, **nettoyage / harmonisati
 
 ## 📅 Avancement
 - [x] Définition du sujet  
-- [ ] Collecte des données  
+- [X] Collecte des données  
 - [ ] Nettoyage et harmonisation  
 - [ ] Agrégation et analyse  
 - [ ] Visualisation finale  
+ 
