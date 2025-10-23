@@ -1,4 +1,3 @@
-
 CREATE TABLE AirQuality (
     id serial PRIMARY KEY,
     id_city_fk INT not null,
@@ -15,5 +14,3 @@ CREATE TABLE AirQuality (
     	foreign key(id_city_fk)
     	references City(id)
 )
-
-
