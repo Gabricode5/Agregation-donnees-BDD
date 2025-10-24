@@ -16,7 +16,7 @@ count = 0
 
 for ville in villes:
     # Appel API Nominatim pour récupérer latitude et longitude
-    geocoding_url = f"https://nominatim.openstreetmap.org/search?q={ville},France&format=json&limit=1" #URL API Nominatim
+    geocoding_url = f"https://nominatim.openstreetmap.org/search?q={ville},USA&format=json&limit=1" #URL API Nominatim
     headers = {'User-Agent': 'AirQualityAnalysis/1.0'} #ajout d'un User-Agent pour respecter les conditions d'utilisation de Nominatim
     geo_response = requests.get(geocoding_url, headers=headers)
     
@@ -42,8 +42,8 @@ for ville in villes:
             
             count += 1 #incrémentation de l'ID
             meteo_data.append({  
-                'id': count,
-                'ville': ville,
+                'ville': count,
+                #'ville': ville,
                 'temperature_C': temperature,
                 'humidite_pourcent': humidite,
                 'pression_hPa': pression,
