@@ -1,7 +1,8 @@
 CREATE TABLE US_Population (
-    id serial PRIMARY KEY,
-    ville INT NOT NULL,
-    capital VARCHAR(50) NOT NULL,
+    id SERIAL PRIMARY KEY,
+    city_id INT NOT NULL,
     population INT,
-    FOREIGN KEY (ville) REFERENCES City (id)
+    CONSTRAINT fk_city_population
+    FOREIGN KEY (city_id) 
+    REFERENCES City (id)
 );
