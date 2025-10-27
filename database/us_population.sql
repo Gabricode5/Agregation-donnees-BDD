@@ -1,6 +1,6 @@
 CREATE TABLE US_Population (
     id SERIAL PRIMARY KEY,
-    city_id INT NOT NULL,
+    city_id VARCHAR(50),
     population INT,
     CONSTRAINT fk_city_population
     FOREIGN KEY (city_id) 
